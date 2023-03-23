@@ -26,7 +26,7 @@ const d = superPrint([1, 2, true, false])
 console.log(b);
 
 console.log(c.concat("ddd"));
-console.log(a);
+console.log(a + 3);
 console.log(b);
 console.log(c);
 console.log(d);
