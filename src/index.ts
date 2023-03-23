@@ -6,7 +6,7 @@ type SuperPrintExample = {
 };
 type SuperPrint = {
   <T>(arr: T[]): T,
-  <T>(arr: T[], no:number): T,
+  <T, M>(arr: T[], no:M): T,
 };
 
 const superPrint: SuperPrint = (arr, no?) => {
@@ -23,6 +23,9 @@ const a = superPrint([1, 2, 3, 4])
 const b = superPrint([true, false, true], 1)
 const c = superPrint(["a", "b", "c"], 2)
 const d = superPrint([1, 2, true, false])
+console.log(b);
+
+console.log(c.concat("ddd"));
 console.log(a);
 console.log(b);
 console.log(c);
