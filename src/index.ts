@@ -1,32 +1,27 @@
-type SuperPrintExample = {
-  (arr: number[]): void,
-  (arr: string[]): void,
-  (arr: boolean[]): void,
-  (arr: (number|boolean)[]): void,
-};
-type SuperPrint = {
-  <T>(arr: T[]): T,
-  <T, M>(arr: T[], no:M): T,
+type Player<T> = {
+  name:string,
+  extraInfo: T
 };
 
-const superPrint: SuperPrint = (arr, no?) => {
-  if(no) return arr[no];
-  return arr[0];
+type NicoExtra = {
+  favFood:string,
 }
 
-const superPrint2: SuperPrint = (arr) => {
-  return arr[0];
-}
+type NicoPlayer = Player<NicoExtra>;
 
+const nico: NicoPlayer = {
+  name: 'nico',
+  extraInfo: {
+    favFood: 'kimchi'
+  }
+};
 
-const a = superPrint([1, 2, 3, 4])
-const b = superPrint([true, false, true], 1)
-const c = superPrint(["a", "b", "c"], 2)
-const d = superPrint([1, 2, true, false])
-console.log(b);
+type A<T> = Array<T>;
 
-console.log(c.concat("ddd"));
-console.log(a + 3);
-console.log(b);
-console.log(c);
-console.log(d);
+type PrintNumbers = {
+  <T>(arr: A<T>) : T
+};
+
+type PrintNumbers2 = <T>(arr: A<T>) => T;
+
+const printAllNumbers : PrintNumbers = (arr) => arr[0];
