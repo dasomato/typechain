@@ -1,27 +1,28 @@
-type Player<T> = {
-  name:string,
-  extraInfo: T
-};
-
-type NicoExtra = {
-  favFood:string,
+interface SStorage<T> {
+  [key:string]: T,
+}
+class LocalStorage<T> {
+  private storage: SStorage<T> = {};
+  set(key:string, value: T) {
+    this.storage[key] = value;
+  }
+  remove(key:string) {
+    delete this.storage[key];
+  }
+  get(key:string): T {
+    return this.storage[key];
+  }
+  clear() {
+    this.storage = {};
+  }
 }
 
-type NicoPlayer = Player<NicoExtra>;
-
-const nico: NicoPlayer = {
-  name: 'nico',
-  extraInfo: {
-    favFood: 'kimchi'
-  }
-};
-
-type A<T> = Array<T>;
-
-type PrintNumbers = {
-  <T>(arr: A<T>) : T
-};
-
-type PrintNumbers2 = <T>(arr: A<T>) => T;
-
-const printAllNumbers : PrintNumbers = (arr) => arr[0];
+const stringStorage = new LocalStorage<string>();
+stringStorage.set("korea", "kimchi");
+stringStorage.set("italy", "pizza");
+console.log(stringStorage.get("korea"));
+console.log(stringStorage.get("italy"));
+stringStorage.remove("italy");
+console.log(stringStorage.get("italy"));
+stringStorage.clear();
+console.log(stringStorage.get("korea"));
