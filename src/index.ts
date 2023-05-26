@@ -9,3 +9,4 @@ class Block {
 
 const block = new Block("abc");
 console.log(block.hello());
+
